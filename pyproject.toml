@@ -1,16 +1,26 @@
 [tool.poetry]
-name = "rag-chat"
+name = "rag_chat"
 version = "0.1.0"
 description = ""
 authors = ["Alex Bru <brubuxo@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9,<3.13"
 langchain = "^0.0.346"
-pymongo = {version = "3.6", extras = ["srv"]}
+pymongo = {version = ">=4.4", extras = ["srv"]}
 python-dotenv = "^1.0.0"
+pandas = "^2.1.4"
+llama-index = "^0.9.30"
+ipykernel = "^6.28.0"
+qdrant-client = "^1.7.0"
+pydantic = "^2.5.3"
 
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.28.0"
+missingno = "^0.5.2"
+anytree = "^2.12.1"
 
 [build-system]
 requires = ["poetry-core"]
