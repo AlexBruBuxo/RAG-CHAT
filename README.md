@@ -21,19 +21,23 @@ Pull Qdrant:
 ```bash
 docker pull qdrant/qdrant
 ```
-Pull Qdrant:
+Run Qdrant:
 ```bash
 docker run -d -p 6333:6333 -p 6334:6334 \
     -v $(pwd)/data/qdrant_storage:/qdrant/storage:z \
     --name qdrant \
     qdrant/qdrant
 ```
-Stop Qdrant:
-```bash
-docker stop qdrant
-```
 Start Qdrant:
 ```bash
 docker start qdrant
 ```
-
+URL: http://localhost:6333/dashboard
+Stop Qdrant:
+```bash
+docker stop qdrant
+```
+Remove Qdrant:
+```bash
+docker rm qdrant
+```
