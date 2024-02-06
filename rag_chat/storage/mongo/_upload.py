@@ -1,6 +1,6 @@
 import pandas as pd
 import ast
-from rag_chat.data.mongo import mongodb_client
+from rag_chat.storage.mongo import mongodb_client
 
 def str2list(value):
     try:

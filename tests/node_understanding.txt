@@ -1,0 +1,166 @@
+Docuemnt 0: 
+[Document(id_='6a4ee972-ff86-4866-bfbe-c66a24382e2b', 
+embedding=None, 
+metadata={'uniq_id': 'f1aee81991548da1c5085395ea033a84', 'list_price': 11.52, 'category': 'Home > Kids Rooms > Kids Storage'}, 
+excluded_embed_metadata_keys=[], 
+excluded_llm_metadata_keys=['uniq_id'], 
+relationships={}, 
+hash='d0530c10c91a260a36f7db237310444b94de588f9db58a8aebcac1f18ea8329a', 
+text='product_url: https://www.walmart.com/ip/Toytainer-Shoe-Box-Play-N-Store-Boy/40718635 \n\nproduct_name: Toytainer Shoe Box Play-N-Store, Boy \n\nbrand: Toytainer \n\ndescription: Toytainer Shoe Box Play-N-Store, Boy: Teach your children to put away their toys while having fun playing Shoe box features fold-out play mat Top carry handle Fun city-theme Collapsible or stacks for modularity Play and put away! Teach your children to put away their toys while having fun playing! Shoebox features fold-out play mat, top-carry handle and a fun city-theme. It is collapsible or stacks for modularity.|Teach your children to put away their toys while having fun playing|Shoe box features fold-out play mat|Top carry handle|Fun city-theme|Collapsible or stacks for modularity \n\navailable: True \n\nsale_price: 11.52 \n\ndiscount: False', 
+start_char_idx=None, 
+end_char_idx=None, 
+text_template='{metadata_str}\n\n{content}', 
+metadata_template='{key}: {value}', 
+metadata_seperator=' \n\n')]
+
+Node 0: 
+[TextNode(id_='2b672514-1b76-42db-86fa-e6e3b42e6e72', 
+embedding=None, 
+metadata={'uniq_id': 'f1aee81991548da1c5085395ea033a84', 'list_price': 11.52, 'category': 'Home > Kids Rooms > Kids Storage'}, 
+excluded_embed_metadata_keys=[], 
+excluded_llm_metadata_keys=['uniq_id'], 
+relationships={
+    <NodeRelationship.SOURCE: '1'>: RelatedNodeInfo(node_id='6a4ee972-ff86-4866-bfbe-c66a24382e2b', 
+        node_type=<ObjectType.DOCUMENT: '4'>, 
+        metadata={'uniq_id': 'f1aee81991548da1c5085395ea033a84', 'list_price': 11.52, 'category': 'Home > Kids Rooms > Kids Storage'}, 
+        hash='d0530c10c91a260a36f7db237310444b94de588f9db58a8aebcac1f18ea8329a'), 
+    <NodeRelationship.NEXT: '3'>: RelatedNodeInfo(node_id='c87b0eff-2927-421d-8971-d6147d26d0dc', 
+        node_type=<ObjectType.TEXT: '1'>, 
+        metadata={}, 
+        hash='22356175f6414e2e2ce4aa595781b7a9f595e14006f5ee44c64afeed19212fce')}, 
+hash='20cca151dc9b70ca224042062e1f547ac0fb713237303b855a125c5f473d3505', 
+text='product_url: https://www.walmart.com/ip/Toytainer-Shoe-Box-Play-N-Store-Boy/40718635 \n\nproduct_name: Toytainer Shoe Box Play-N-Store, Boy \n\nbrand: Toytainer \n\ndescription: Toytainer Shoe Box Play-N-Store, Boy: Teach your children to put away their toys while having fun playing Shoe box features fold-out play mat Top carry handle Fun city-theme Collapsible or stacks for modularity Play and put away! Teach your children to put away their toys while having fun playing! Shoebox features fold-out play mat, top-carry handle and a fun city-theme. It is collapsible or stacks for modularity.|Teach your children to put away their toys while having fun playing|Shoe box features fold-out play mat|Top carry handle|Fun city-theme|Collapsible or stacks for modularity \n\navailable: True \n\nsale_price: 11.52 \n\ndiscount: False', 
+start_char_idx=0, 
+end_char_idx=818, 
+text_template='{metadata_str}\n\n{content}', 
+metadata_template='{key}: {value}', 
+metadata_seperator=' \n\n')]
+
+
+
+[TextNode(id_='c87b0eff-2927-421d-8971-d6147d26d0dc', 
+embedding=None, 
+metadata={'uniq_id': '0a1ce493925305b08cf011ad4210ff48', 'list_price': 129.99, 'category': 'Health > Sports Medicine & Injury Recovery Solution > Optimize Performance > Train For A Specific Event > Boxing'}, 
+excluded_embed_metadata_keys=[], 
+excluded_llm_metadata_keys=['uniq_id'], 
+relationships={
+    <NodeRelationship.SOURCE: '1'>: RelatedNodeInfo(node_id='d383c913-b4ad-4dec-b6e9-d1b839217f94', 
+        node_type=<ObjectType.DOCUMENT: '4'>, 
+        metadata={'uniq_id': '0a1ce493925305b08cf011ad4210ff48', 'list_price': 129.99, 'category': 'Health > Sports Medicine & Injury Recovery Solution > Optimize Performance > Train For A Specific Event > Boxing'}, 
+        hash='b40c0244d7f738cf3c4eaa4c78e0a9a312ac7e6a007b91b95e65ff833be10655'), 
+    <NodeRelationship.PREVIOUS: '2'>: RelatedNodeInfo(node_id='2b672514-1b76-42db-86fa-e6e3b42e6e72', 
+        node_type=<ObjectType.TEXT: '1'>, 
+        metadata={'uniq_id': 'f1aee81991548da1c5085395ea033a84', 'list_price': 11.52, 'category': 'Home > Kids Rooms > Kids Storage'}, 
+        hash='20cca151dc9b70ca224042062e1f547ac0fb713237303b855a125c5f473d3505'), 
+    <NodeRelationship.NEXT: '3'>: RelatedNodeInfo(node_id='4a81b6f0-0ade-48d4-a006-0e144ba5c677',
+        node_type=<ObjectType.TEXT: '1'>, 
+        metadata={}, 
+        hash='1a850542e8fa23044e798774c10517040ab955da02d2db378c5b96053f2e4093')}, 
+hash='22356175f6414e2e2ce4aa595781b7a9f595e14006f5ee44c64afeed19212fce', 
+text='product_url: https://www.walmart.com/ip/FUEL-Pureformance-Heavy-Bag-Stand-Black/55505439 \n\nproduct_name: FUEL Pureformance Heavy Bag Stand, Black \n\nbrand: Fuel Pureformance \n\ndescription: The FUEL Pureformance Heavy Bag Stand is the perfect stand for hanging your punching bag and upping your boxing and MMA game. Standing just over seven feet tall, the FUEL Pureformance stand holds your heavy bag in the optimum position for both hand and foot work. With the convenience of hanging a heavy bag at home or the office, you can get a quick cardio and strength workout, relieve some stress or just get some blood pumping easily without having to go anywhere. A good boxing workout uses most of your muscle groups from your legs to your arms, strengthening your core and improving your balance. So, whether you take time to get a session in or take a few short blasts at the bag here and there throughout the day, you will feel the benefits in no time. The FUEL Pureformance Heavy Bag Stand is made from heavy-duty steel tubing with a scratch-resistant powder-coated finish, making it tough enough to take a beating. FUEL Pureformance Heavy Bag Stand, Black: Made from heavy-duty steel tubing Scratch-resistant powder-coated finish Weight pegs with foam stops for increased stability (weights not included) 2 bottom tube hooks for optional bag stabilization (strap not included) Maximum heavy bag weight: 100 lbs (bag not included) Dimensions: 55.51"W x 47.64"D x 87.4"H |Made from heavy-duty steel tubing|Scratch-resistant powder-coated finish|Weight pegs with foam stops for increased stability (weights not included)|2 bottom tube hooks for optional bag stabilization (strap not included)|Maximum heavy bag weight: 100 lbs (bag not included)|Dimensions: 55.51"W x 47.64"D x 87.4"H \n\navailable: True \n\nsale_price: 79.99 \n\ndiscount: True', start_char_idx=0, end_char_idx=1835, text_template='{metadata_str}\n\n{content}', metadata_template='{key}: {value}', metadata_seperator=' \n\n')]
+
+
+---------------------------------
+
+
+------------------------------------------------------------------
+Docuemnt 4: [Document(id_='5791457e-81af-43e4-86e4-9c873091edf3', 
+embedding=None, 
+metadata={'uniq_id': 'd32c8b6f2ead69d851e336f5397ec527', 'list_price': 17.44, 'category': 'Health > Caregiver > Multivitamins'}, 
+excluded_embed_metadata_keys=[], 
+excluded_llm_metadata_keys=['uniq_id'], 
+relationships={}, 
+hash='dfff3ca943f668b39c7637c4927408a5f688950e211cd0c0c44095c6b1a48a29', 
+text='product_url: https://www.walmart.com/ip/Centrum-Silver-Men-200-Count-Complete-Multivitamin-Multimineral-Supplement-Tablet-Vitamin-D3-B-Vitamins-Zinc-Age-50/12081664 \n\nproduct_name: Centrum Silver Men (200 Count) Complete Multivitamin / Multimineral Supplement Tablet, Vitamin D3, B Vitamins, Zinc, Age 50+ \n\nbrand: Centrum \n\ndescription: Centrum Silver Men Multivitamin and Multimineral Supplement is the most complete supplement to help support the health of men age 50 and older. As men age, its important that they get enough Magnesium, Vitamin D and Vitamin B6 to help maintain healthy muscles. Centrum Silver is formulated with a broad spectrum of key nutrients to support the heart, brain and eyes (2) as well as muscle function (3). This vitamin and mineral supplement for men provides our highest levels of Vitamin D3, which is the preferred form of Vitamin D. In addition, Centrum multivitamins have a smooth coating that makes them easy-to-swallow. Centrum Silver tablets are available in personalized formulas and are all verified non-GMO (1) and gluten-free. Multivitamins are part of an overall healthy lifestyle and can help men get the recommended amount of key vitamins and minerals. Help support your body head-to-toe with Centrum, the #1 doctor and pharmacist recommended brand (4).* (1) Non-GMO applies to Centrum and Centrum Silver tablets only; learn more at Centrums official website. (2) Heart: B-Vitamins help promote heart health. Not a replacement for cholesterol-lowering drugs. Brain: Zinc and B-Vitamins help support normal brain function. Eyes: Vitamins A, C, and E and Lutein help support healthy eyes.* This product is not intended to provide daily intake of Lutein. Take with a diet rich in fruits and vegetables. (3) Magnesium, Vitamins D and B6 help support muscle function.* (4) Based on IMS Health data (adult multivitamin brands in the US as of March 2017), and 2017 Pharmacy Times Survey of Pharmacists OTC Recommendations. * These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure or prevent any disease. Includes 200 tablets of Centrum Silver Men Multivitamin / Multimineral Supplement, Age 50+ Age-adjusted to support the health of men age 50 and older and to help support the heart, brain and eyes (2)* The most complete multivitamin, with Centrums highest levels of Vitamin D3 to support muscle function (3)* Verified non-GMO (1) and gluten-free vitamin with a smooth coating thats easy-to-swallow #1 doctor and pharmacist recommended brand (4) for multivitamins |Includes 200 tablets of Centrum Silver Men Multivitamin / Multimineral Supplement, Age 50+ |Age-adjusted to support the health of men age 50 and older and to help support the heart, brain and eyes (2)* |The most complete multivitamin, with Centrums highest levels of Vitamin D3 to support muscle function (3)* |Verified non-GMO (1) and gluten-free vitamin with a smooth coating thats easy-to-swallow |#1 doctor and pharmacist recommended brand (4) for multivitamins \n\navailable: True \n\nsale_price: 17.44 \n\ndiscount: False', 
+start_char_idx=None, 
+end_char_idx=None, 
+text_template='{metadata_str}\n\n{content}', 
+metadata_template='{key}: {value}', 
+metadata_seperator=' \n\n')]
+------------------------------------------------------------------
+Node 4: [TextNode(id_='433a13db-6a60-4f99-9588-eeef783dfd23', 
+embedding=None, 
+metadata={'uniq_id': 'd32c8b6f2ead69d851e336f5397ec527', 
+'list_price': 17.44, 'category': 'Health > Caregiver > Multivitamins'}, 
+excluded_embed_metadata_keys=[], 
+excluded_llm_metadata_keys=['uniq_id'], 
+relationships={
+    <NodeRelationship.SOURCE: '1'>: RelatedNodeInfo(
+        node_id='5791457e-81af-43e4-86e4-9c873091edf3', 
+        node_type=<ObjectType.DOCUMENT: '4'>, 
+        metadata={'uniq_id': 'd32c8b6f2ead69d851e336f5397ec527', 'list_price': 17.44, 'category': 'Health > Caregiver > Multivitamins'}, 
+        hash='dfff3ca943f668b39c7637c4927408a5f688950e211cd0c0c44095c6b1a48a29'
+        ), 
+    <NodeRelationship.PREVIOUS: '2'>: RelatedNodeInfo(
+        node_id='cc269dc9-0ddb-44f6-bcb6-4ff3c5600fd3', 
+        node_type=<ObjectType.TEXT: '1'>, 
+        metadata={'uniq_id': '9fdb3109750784a7d138352fe224e45c', 'list_price': 6.99, 'category': 'Sports & Outdoors > Sports > Basketball > Basketball Accessories'}, 
+        hash='1a850542e8fa23044e798774c10517040ab955da02d2db378c5b96053f2e4093'
+        ), 
+    <NodeRelationship.NEXT: '3'>: RelatedNodeInfo(
+        node_id='7909fac3-2a7c-45a9-88ca-5ad18ada8d49', 
+        node_type=<ObjectType.TEXT: '1'>, 
+        metadata={}, 
+        hash='51ec22ec7e0782ff2aa6a05405493950b01883f4060786fb74fd0dff188d25f3'
+        )
+    }, 
+hash='f974f8e611e0189e413aa58a91db79010fa9d8fef474b4ea3f69439577827a9d', 
+text='product_url: https://www.walmart.com/ip/Centrum-Silver-Men-200-Count-Complete-Multivitamin-Multimineral-Supplement-Tablet-Vitamin-D3-B-Vitamins-Zinc-Age-50/12081664 \n\nproduct_name: Centrum Silver Men (200 Count) Complete Multivitamin / Multimineral Supplement Tablet, Vitamin D3, B Vitamins, Zinc, Age 50+ \n\nbrand: Centrum \n\ndescription: Centrum Silver Men Multivitamin and Multimineral Supplement is the most complete supplement to help support the health of men age 50 and older. As men age, its important that they get enough Magnesium, Vitamin D and Vitamin B6 to help maintain healthy muscles. Centrum Silver is formulated with a broad spectrum of key nutrients to support the heart, brain and eyes (2) as well as muscle function (3). This vitamin and mineral supplement for men provides our highest levels of Vitamin D3, which is the preferred form of Vitamin D. In addition, Centrum multivitamins have a smooth coating that makes them easy-to-swallow. Centrum Silver tablets are available in personalized formulas and are all verified non-GMO (1) and gluten-free. Multivitamins are part of an overall healthy lifestyle and can help men get the recommended amount of key vitamins and minerals. Help support your body head-to-toe with Centrum, the #1 doctor and pharmacist recommended brand (4).* (1) Non-GMO applies to Centrum and Centrum Silver tablets only; learn more at Centrums official website. (2) Heart: B-Vitamins help promote heart health. Not a replacement for cholesterol-lowering drugs. Brain: Zinc and B-Vitamins help support normal brain function. Eyes: Vitamins A, C, and E and Lutein help support healthy eyes.* This product is not intended to provide daily intake of Lutein. Take with a diet rich in fruits and vegetables. (3) Magnesium, Vitamins D and B6 help support muscle function.', 
+start_char_idx=0, 
+end_char_idx=1809, 
+text_template='{metadata_str}\n\n{content}', 
+metadata_template='{key}: {value}', 
+metadata_seperator=' \n\n')]
+------------------------------------------------------------------
+Node 5: [TextNode(id_='7909fac3-2a7c-45a9-88ca-5ad18ada8d49', 
+embedding=None, 
+metadata={'uniq_id': 'd32c8b6f2ead69d851e336f5397ec527', 'list_price': 17.44, 'category': 'Health > Caregiver > Multivitamins'}, 
+excluded_embed_metadata_keys=[], 
+excluded_llm_metadata_keys=['uniq_id'], 
+relationships={
+    <NodeRelationship.SOURCE: '1'>: RelatedNodeInfo(
+        node_id='5791457e-81af-43e4-86e4-9c873091edf3', 
+        node_type=<ObjectType.DOCUMENT: '4'>, 
+        metadata={'uniq_id': 'd32c8b6f2ead69d851e336f5397ec527', 'list_price': 17.44, 'category': 'Health > Caregiver > Multivitamins'}, 
+        hash='dfff3ca943f668b39c7637c4927408a5f688950e211cd0c0c44095c6b1a48a29'
+        ), 
+    <NodeRelationship.PREVIOUS: '2'>: RelatedNodeInfo(
+        node_id='433a13db-6a60-4f99-9588-eeef783dfd23', 
+        node_type=<ObjectType.TEXT: '1'>, 
+        metadata={'uniq_id': 'd32c8b6f2ead69d851e336f5397ec527', 'list_price': 17.44, 'category': 'Health > Caregiver > Multivitamins'}, 
+        hash='f974f8e611e0189e413aa58a91db79010fa9d8fef474b4ea3f69439577827a9d'
+        ), 
+    <NodeRelationship.NEXT: '3'>: RelatedNodeInfo(
+        node_id='2c7188ec-b252-478b-a571-93280107011c', 
+        node_type=<ObjectType.TEXT: '1'>, 
+        metadata={}, 
+        hash='49cb3a9f21e5ef6e66420008b781202cb313e0e0872f1bc3d44bdb562c0e3917'
+        )
+    },
+hash='51ec22ec7e0782ff2aa6a05405493950b01883f4060786fb74fd0dff188d25f3', 
+text='(2) Heart: B-Vitamins help promote heart health. Not a replacement for cholesterol-lowering drugs. Brain: Zinc and B-Vitamins help support normal brain function. Eyes: Vitamins A, C, and E and Lutein help support healthy eyes.* This product is not intended to provide daily intake of Lutein. Take with a diet rich in fruits and vegetables. (3) Magnesium, Vitamins D and B6 help support muscle function.* (4) Based on IMS Health data (adult multivitamin brands in the US as of March 2017), and 2017 Pharmacy Times Survey of Pharmacists OTC Recommendations. * These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure or prevent any disease. Includes 200 tablets of Centrum Silver Men Multivitamin / Multimineral Supplement, Age 50+ Age-adjusted to support the health of men age 50 and older and to help support the heart, brain and eyes (2)* The most complete multivitamin, with Centrums highest levels of Vitamin D3 to support muscle function (3)* Verified non-GMO (1) and gluten-free vitamin with a smooth coating thats easy-to-swallow #1 doctor and pharmacist recommended brand (4) for multivitamins |Includes 200 tablets of Centrum Silver Men Multivitamin / Multimineral Supplement, Age 50+ |Age-adjusted to support the health of men age 50 and older and to help support the heart, brain and eyes (2)* |The most complete multivitamin, with Centrums highest levels of Vitamin D3 to support muscle function (3)* |Verified non-GMO (1) and gluten-free vitamin with a smooth coating thats easy-to-swallow |#1 doctor and pharmacist recommended brand (4) for multivitamins \n\navailable: True \n\nsale_price: 17.44 \n\ndiscount: False', start_char_idx=1407, end_char_idx=3108, text_template='{metadata_str}\n\n{content}', metadata_template='{key}: {value}', metadata_seperator=' \n\n')]
+
+
+
+Document 5: [Document(id_='d88743f5-48b0-415e-8acf-b55aedc8d8f4', embedding=None, metadata={'uniq_id': 'ff2d6a56ed13947130814a20fb9b30fe', 'list_price': 8.81, 'category': 'Household Essentials > Light Bulbs > Globe Light Bulbs'}, excluded_embed_metadata_keys=[], excluded_llm_metadata_keys=['uniq_id'], relationships={}, hash='84fb3136144a8258e5b565294f72f6686b26cd0c0d8e03fc88d3fe2d2c76575e', text='product_url: https://www.walmart.com/ip/03102-Light-Bulb-Vanity-Globe-Clear-720-Lumens-60-Watts-Quantity-1/45836095 \n\nproduct_name: 03102 Light Bulb, Vanity Globe, Clear, 720 Lumens, 60-Watts - Quantity 1 \n\nbrand: Westinghouse \n\ndescription: 60G40, 60W, 120V, Clear, Vanity Globe, Light Bulb, Maximum Overall Length 6-3/4" x 5" Diameter, Standard Base, 720 Lumens, 2500 Average Rated Hours, Boxed. Color/Finish: Clear Color Temperature: 2,700K Average Lifetime: 2500 hours Lumens (light output): 722 CRI: 100 \n\navailable: True \n\nsale_price: 8.81 \n\ndiscount: False', start_char_idx=None, end_char_idx=None, text_template='{metadata_str}\n\n{content}', metadata_template='{key}: {value}', metadata_seperator=' \n\n')]
+
+
+
+
+
+Node 0: [TextNode(id_='736db301-2393-44fa-a656-7d516f4c69b7', 
+embedding=None, 
+metadata={'uniq_id': 'd32c8b6f2ead69d851e336f5397ec527', 'list_price': 17.44, 'category': 'Health > Caregiver > Multivitamins'}, 
+excluded_embed_metadata_keys=[], 
+excluded_llm_metadata_keys=['uniq_id'], 
+relationships={
+    <NodeRelationship.SOURCE: '1'>: RelatedNodeInfo(
+        node_id='5791457e-81af-43e4-86e4-9c873091edf3', 
+        node_type=<ObjectType.DOCUMENT: '4'>, 
+        metadata={'uniq_id': 'd32c8b6f2ead69d851e336f5397ec527', 'list_price': 17.44, 'category': 'Health > Caregiver > Multivitamins'}, 
+        hash='dfff3ca943f668b39c7637c4927408a5f688950e211cd0c0c44095c6b1a48a29')
+    }, hash='51ec22ec7e0782ff2aa6a05405493950b01883f4060786fb74fd0dff188d25f3', 
+text='(2) Heart: B-Vitamins help promote heart health. Not a replacement for cholesterol-lowering drugs. Brain: Zinc and B-Vitamins help support normal brain function. Eyes: Vitamins A, C, and E and Lutein help support healthy eyes.* This product is not intended to provide daily intake of Lutein. Take with a diet rich in fruits and vegetables. (3) Magnesium, Vitamins D and B6 help support muscle function.* (4) Based on IMS Health data (adult multivitamin brands in the US as of March 2017), and 2017 Pharmacy Times Survey of Pharmacists OTC Recommendations. * These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure or prevent any disease. Includes 200 tablets of Centrum Silver Men Multivitamin / Multimineral Supplement, Age 50+ Age-adjusted to support the health of men age 50 and older and to help support the heart, brain and eyes (2)* The most complete multivitamin, with Centrums highest levels of Vitamin D3 to support muscle function (3)* Verified non-GMO (1) and gluten-free vitamin with a smooth coating thats easy-to-swallow #1 doctor and pharmacist recommended brand (4) for multivitamins |Includes 200 tablets of Centrum Silver Men Multivitamin / Multimineral Supplement, Age 50+ |Age-adjusted to support the health of men age 50 and older and to help support the heart, brain and eyes (2)* |The most complete multivitamin, with Centrums highest levels of Vitamin D3 to support muscle function (3)* |Verified non-GMO (1) and gluten-free vitamin with a smooth coating thats easy-to-swallow |#1 doctor and pharmacist recommended brand (4) for multivitamins \n\navailable: True \n\nsale_price: 17.44 \n\ndiscount: False', 
+start_char_idx=1407, 
+end_char_idx=3108, 
+text_template='{metadata_str}\n\n{content}', metadata_template='{key}: {value}', metadata_seperator=' \n\n')]

@@ -1,9 +1,9 @@
 import logging
-from typing import Dict, List, Optional
+from typing import List, Optional
 from pydantic.v1.main import ModelMetaclass
 
 from llama_index import VectorStoreIndex
-from llama_index.schema import MetadataMode, Document, TextNode
+from llama_index.schema import Document, TextNode
 from llama_index.ingestion import IngestionPipeline, DocstoreStrategy
 from llama_index.vector_stores.types import BasePydanticVectorStore
 from llama_index.storage.kvstore.mongodb_kvstore import MongoDBKVStore
@@ -12,7 +12,7 @@ from llama_index.storage.kvstore.mongodb_kvstore import MongoDBKVStore
 logger = logging.getLogger(__name__)
 
 
-class Store:
+class Storage:
     def __init__(
         self,
         node_parser: ModelMetaclass,
@@ -59,6 +59,7 @@ class Store:
         """Add documents to index; create index if it does not exist."""
         # TODO: This fails to handle deduplicates on the Vvector_store, only the docstore
         # Should not happen: https://docs.llamaindex.ai/en/stable/examples/ingestion/redis_ingestion_pipeline.html
+        # Need to double check: maybe this is working fine but a document can have multiple Nodes!!
         try:
             return self.pipeline.run(documents=documents)
         except Exception as e:

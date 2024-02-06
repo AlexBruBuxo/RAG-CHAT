@@ -2,7 +2,7 @@ import uuid
 from typing import Dict, Iterable, List, Optional
 from llama_index.readers import SimpleMongoReader
 from llama_index.schema import Document, MetadataMode
-from rag_chat.data.mongo import mongodb_uri
+from rag_chat.storage.mongo import mongodb_uri
 
 class CustomMongoReader(SimpleMongoReader):
     """Extends the SimpleMongoReader from llama-index.

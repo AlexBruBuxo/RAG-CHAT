@@ -1,5 +1,5 @@
 from llama_index.storage.docstore import MongoDocumentStore
-from rag_chat.data.mongo import mongodb_uri
+from rag_chat.storage.mongo import mongodb_uri
 import os
 from dotenv import load_dotenv
 

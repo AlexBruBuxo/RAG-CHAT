@@ -28,7 +28,7 @@ mongo_reader_config = {
     'field_names': ["product_url", "product_name", "brand", "description", "available", "sale_price", "discount"], 
     'separator':  " \n\n", 
     'query_dict': {"description": { "$type": "string" }},
-    'max_docs': 5,
+    'max_docs': 50,
     'metadata_names': ["list_price", "category"],
     'metadata_seperator': " \n\n",
     'excluded_llm_metadata_keys': [],
