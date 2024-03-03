@@ -12,7 +12,7 @@ from llama_index.extractors import (
 load_dotenv()
 
 DEFAULT_SUMMARY_EXTRACT_TEMPLATE = """\
-Here is the content of the product:
+Here is the information of a product:
 {context_str}
 
 Summarize the key features of the product. \
@@ -20,25 +20,26 @@ Do not mention the category, URL, price nor discount information. \
 
 Summary: """
 
-
 # MongoDB Data Reader
 mongo_reader_config = {
     'db_name': os.getenv('MONGODB_DB_NAME'), 
     'collection_name': os.getenv('MONGODB_DATA_COLLECTION_NAME'), 
-    'field_names': ["product_url", "product_name", "brand", "description", "available", "sale_price", "discount"], 
+    'field_names': ["product_name", "brand", "category", "product_url", "description", "available", "sale_price", "list_price", "discount"], 
     'separator':  " \n\n", 
     'query_dict': {"description": { "$type": "string" }},
-    'max_docs': 50,
-    'metadata_names': ["list_price", "category"],
+    'max_docs': 200,
+    'metadata_names': [],
     'metadata_seperator': " \n\n",
-    'excluded_llm_metadata_keys': [],
+    'excluded_llm_metadata_keys': [], # What the LLM won't see when crafting the response
+    'excluded_embed_metadata_keys': [], # What the Emmbeding model won't see when ranking Nodes
     'field_doc_id': "uniq_id"
 }
 
 # Sentence Splitter
 sentence_splitter_config = {
     'chunk_size': 512,
-    'chunk_overlap': 128
+    'chunk_overlap': 128,
+    'include_prev_next_rel': True  # Default True 
 }
 
 # Metadata Extractors

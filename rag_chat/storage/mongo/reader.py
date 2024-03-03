@@ -2,7 +2,6 @@ import uuid
 from typing import Dict, Iterable, List, Optional
 from llama_index.readers import SimpleMongoReader
 from llama_index.schema import Document, MetadataMode
-from rag_chat.storage.mongo import mongodb_uri
 
 class CustomMongoReader(SimpleMongoReader):
     """Extends the SimpleMongoReader from llama-index.
@@ -26,6 +25,7 @@ class CustomMongoReader(SimpleMongoReader):
         metadata_names: Optional[List[str]] = None,
         metadata_seperator: str = "\n",
         excluded_llm_metadata_keys: Optional[List[str]] = [],
+        excluded_embed_metadata_keys: Optional[List[str]] = [],
         field_doc_id: Optional[str] = None
     ) -> Iterable[Document]:
         """Load data from the input directory.
@@ -83,7 +83,8 @@ class CustomMongoReader(SimpleMongoReader):
                         id_=doc_id if doc_id is not None else str(uuid.uuid4()),
                         text=text, 
                         metadata_seperator=metadata_seperator,
-                        excluded_llm_metadata_keys=excluded_llm_metadata_keys
+                        excluded_llm_metadata_keys=excluded_llm_metadata_keys,
+                        excluded_embed_metadata_keys=excluded_embed_metadata_keys
                     )
             else:
                 try:
@@ -109,42 +110,26 @@ class CustomMongoReader(SimpleMongoReader):
 
 if __name__ == "__main__":
 
-    import os
-    from dotenv import load_dotenv
+    from rag_chat.storage.mongo import mongodb_uri
+    from rag_chat.storage.config import mongo_reader_config
 
-    load_dotenv()
-    DB_NAME = os.getenv('MONGODB_DB_NAME')
-    DATA_COLLECTION_NAME = os.getenv('MONGODB_DATA_COLLECTION_NAME')
-    FIELD_NAMES = ["product_url", "product_name", "brand", "description", "available", 
-                   "sale_price", "discount"]
-    SEPARATOR = " \n\n"
-    QUERY_DICT = {"description": { "$type": "string" }}
-    MAX_DOCS = 50
-    METADATA_NAMES = ["list_price", "category"]
-    EXCLUDED_LLM_METADATA_KEYS = []
-    FIELD_DOC_ID = "uniq_id"
+    mongo_reader_config['max_docs'] = 1
 
     reader = CustomMongoReader(uri=mongodb_uri)
-    documents = reader.load_data(
-        DB_NAME, 
-        DATA_COLLECTION_NAME, 
-        FIELD_NAMES, 
-        separator = SEPARATOR, 
-        query_dict=QUERY_DICT,
-        max_docs = MAX_DOCS,
-        metadata_names = METADATA_NAMES,
-        metadata_seperator = SEPARATOR,
-        excluded_llm_metadata_keys = EXCLUDED_LLM_METADATA_KEYS,
-        field_doc_id = FIELD_DOC_ID
-    )
+    documents = reader.load_data(**mongo_reader_config)
 
     print("The Document Object:\n")
-    print(documents[:1])
-    print("\n------------\n")
+    [print(doc.id_) for doc in documents]
 
-    print("What the embedding model will see when ranking the information:\n")
+    # In our case, metadata is always added to the content.
+    print("\n--------------------------------------------------\n")
+    print("Ranking: what the embedding model will see\n")
     print(documents[0].get_content(metadata_mode=MetadataMode.EMBED))
-    print("\n------------\n")
-
-    print("What the LLM model will see when crafting the response:\n")
+    print("\n--------------------------------------------------\n")
+    print("Crafting response: what the LLM model will see:\n")
     print(documents[0].get_content(metadata_mode=MetadataMode.LLM))
+    print("\n--------------------------------------------------\n")
+    print(documents[0].get_content(metadata_mode=MetadataMode.ALL))
+
+    print("\n--------------------------------------------------\n")
+    print(documents[0].get_content(metadata_mode=MetadataMode.NONE))

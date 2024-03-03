@@ -1,54 +1,53 @@
-from typing import List
-from pydantic import BaseModel
 from llama_index import get_response_synthesizer
 from llama_index.retrievers import VectorIndexRetriever
 from llama_index.query_engine import RetrieverQueryEngine
-from llama_index.response_synthesizers import ResponseMode
-from llama_index.postprocessor import (
-    SimilarityPostprocessor, 
-    LongContextReorder
+from rag_chat.storage.load import load_storage, load_async_storage
+from rag_chat.query.config import (
+    similarity_top_k,
+    node_postprocessors,
+    response_sinthesizer
 )
 
-from rag_chat.storage.load import load_storage
+# If necessary more modularity, all this can be fully customized with a Query Pipeline
+# https://docs.llamaindex.ai/en/stable/module_guides/querying/pipeline/usage_pattern.html
 
+def load_retriever():
+    storage = load_storage()
+    
+    retriever = VectorIndexRetriever(
+        index=storage.index,
+        similarity_top_k=similarity_top_k,
+    )
+    return retriever
 
-storage = load_storage()
+def load_query_engine():
+    retriever = load_retriever()
+    response_synthesizer = get_response_synthesizer(**response_sinthesizer)
 
-retriever = VectorIndexRetriever(
-    index=storage.index,
-    similarity_top_k=5,
-)
+    query_engine = RetrieverQueryEngine(
+        retriever=retriever,
+        response_synthesizer=response_synthesizer,
+        node_postprocessors=node_postprocessors
+    )
+    return query_engine
 
-node_postprocessors = [
-    LongContextReorder(),
-    SimilarityPostprocessor(similarity_cutoff=0.7)
-    # TODO: if we have PREVIOUS/NEXT fields in metadata, we can add 
-    # postprocessors that take this into account (but should only apply to 
-    # Nodes comming form the same doc_id)
-    # https://docs.llamaindex.ai/en/latest/module_guides/querying/node_postprocessors/node_postprocessors.html# 
-]
+def load_async_retriever():
+    storage = load_async_storage()
+    
+    retriever = VectorIndexRetriever(
+        index=storage.async_index,
+        similarity_top_k=similarity_top_k,
+    )
+    return retriever
 
-class Response(BaseModel):
-    """Data model for a response."""
-    product_urls: List[str]
-    answer: str
+def load_async_query_engine():
+    retriever = load_async_retriever()
+    response_synthesizer = get_response_synthesizer(**response_sinthesizer)
 
-response_synthesizer = get_response_synthesizer(
-    response_mode=ResponseMode.COMPACT,
-    # verbose=True,
-
-    # TODO: We can consider a custom synthesizer:
-    # https://docs.llamaindex.ai/en/stable/module_guides/querying/response_synthesizers/root.html#custom-response-synthesizers
-
-    # TODO: Try pydantic extractor
-    # output_cls=Response
-
-    # TODO: toggle with this: https://docs.llamaindex.ai/en/stable/module_guides/querying/response_synthesizers/root.html#using-structured-answer-filtering 
-    # structured_answer_filtering=True
-)
-
-query_engine = RetrieverQueryEngine(
-    retriever=retriever,
-    response_synthesizer=response_synthesizer,
-    node_postprocessors=node_postprocessors
-)
+    query_engine = RetrieverQueryEngine.from_args(
+        retriever=retriever,
+        use_async=True,
+        response_synthesizer=response_synthesizer,
+        node_postprocessors=node_postprocessors
+    )
+    return query_engine

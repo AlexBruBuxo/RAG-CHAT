@@ -50,16 +50,22 @@ class Storage:
         try:
             return VectorStoreIndex.from_vector_store(
                 self.pipeline.vector_store,
-                # use_async=True -> Async add nodes to index??
             ) 
         except Exception as e:
             logger.error("Unable to load vector store:", e)
+    
+    @property
+    def async_index(self) -> VectorStoreIndex:
+        try:
+            return VectorStoreIndex.from_vector_store(
+                self.pipeline.vector_store,
+                use_async=True  # Add nodes to index asynchronously
+            ) 
+        except Exception as e:
+            logger.error("Unable to load async vector store:", e)
 
     def add_docs(self, documents: List[Document]) -> List[TextNode]:
         """Add documents to index; create index if it does not exist."""
-        # TODO: This fails to handle deduplicates on the Vvector_store, only the docstore
-        # Should not happen: https://docs.llamaindex.ai/en/stable/examples/ingestion/redis_ingestion_pipeline.html
-        # Need to double check: maybe this is working fine but a document can have multiple Nodes!!
         try:
             return self.pipeline.run(documents=documents)
         except Exception as e:
@@ -76,10 +82,3 @@ class Storage:
         """Clear vector store."""
         if self.pipeline.vector_store is not None and self.pipeline.vector_store._index_exists():
             self.pipeline.vector_store.delete_index()
-
-
-# TODO: Improve Index: https://docs.llamaindex.ai/en/latest/module_guides/indexing/index_guide.html#
-# 1) Check VectorStoreIndex: https://docs.llamaindex.ai/en/latest/module_guides/indexing/vector_store_index.html
-# 2) Check Keyword Table Index: https://docs.llamaindex.ai/en/latest/api_reference/indices/table.html# 
-# 3) Custom: combine both: https://docs.llamaindex.ai/en/latest/examples/index_structs/knowledge_graph/KnowledgeGraphIndex_vs_VectorStoreIndex_vs_CustomIndex_combined.html# 
-# 4) Check also Knowledge Graphs: https://docs.llamaindex.ai/en/latest/examples/index_structs/knowledge_graph/KnowledgeGraphDemo.html# 
