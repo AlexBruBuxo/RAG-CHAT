@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #222;
+            /* Dark background color */
+            color: #fff;
+            /* White text color */
+        }
+
+        .message-container {
+            display: flex;
+            align-items: center; /* Vertically center content */
+            height: 100vh; /* Set height to full viewport height */
+        }
+
+        .title {
+            font-size: 55px;
+            color: #eee;
+        }
+
+        .icon-brain {
+            color: #FF795B;
+        }
+
+        .subtitle {
+            font-size: 45px;
+            color: #4acd92;
+        }
+
+        .chat-container {
+            max-width: 450px;
+            margin: 20px auto;
+            border: 1px solid #4f4f4f;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #222;
+            /* Dark background color */
+            color: #fff;
+            /* Text color */
+            align-items: center; /* Vertically center content */
+        }
+
+        .chat-messages {
+            padding: 20px;
+            height: 400px;
+            overflow-y: auto;
+            scrollbar-color: #555 #333;
+        }
+
+        .message {
+            padding-top: 10px;
+            /* Add padding at the bottom of each message */
+            clear: both;
+        }
+
+        .message.user .message-body {
+            background-color: #41b883;
+            color: white;
+            border-radius: 10px;
+            padding: 8px 12px;
+            display: inline-block;
+            max-width: 70%;
+            float: right;
+        }
+
+        .user-icon {
+            float: left; /* Align user icon to the left */
+            margin-right: 8px; /* Add margin between icon and text */
+            font-size: 20px;
+        }
+
+        .fa-user {
+            margin-right: 12px;
+        }
+
+        .message.assistant .message-body {
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            padding: 8px 12px;
+            display: inline-block;
+            max-width: 70%;
+            color: #111;
+            clear: both;
+        }
+
+        #send-btn {
+            background-color: #41b883;
+            outline: none;
+            border: #555;
+            margin-bottom: 0px;
+            height: 38px;
+        }
+
+        .input-container {
+            margin-left: 0px;
+            /* Add margin only on the left and right */
+            display: inline-block;
+            /* Ensure div elements are displayed inline */
+            width: 409px;
+        }
+
+        .input-container-btn {
+            display: inline-block;
+            /* Ensure div elements are displayed inline */
+        }
+
+        input[type="text"].form-control {
+            background-color: #444;
+            border-color: #444;
+            color: #fff;
+            /* Add margin only on the left */
+            margin-right: 10px;
+            /* Add margin only on the right */
+        }
+
+        input[type="text"].form-control:focus {
+            background-color: #444;
+            border-color: #444;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="message-container">
+                    <div>
+                    <h1 class="title mb-5"><i class="fas fa-brain icon-brain"></i> RAG-CHAT</h1>
+                    <h2 class="subtitle mb-3">Chat with our products!</h2>
+                    <p>Ask any question you'd like, our assistant will help you.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <!-- Messages will be displayed here -->
+                    </div>
+                    <div class="input-group mb-0">
+                        <div class="input-container">
+                            <input type="text" id="user-message" class="form-control"
+                                placeholder="Type your message...">
+                        </div>
+                        <div class="input-container-btn">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" id="send-btn"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('send-btn').addEventListener('click', sendMessage);
+            document.getElementById('user-message').addEventListener('keydown', function(event) {
+                if (event.key === "Enter") {
+                    sendMessage();
+                }
+            });
+        });
+
+        function sendMessage() {
+            var messageInput = document.getElementById('user-message');
+            var message = messageInput.value.trim();
+            if (message !== '') {
+                addMessage('user', message);
+                messageInput.value = '';
+                fetch('http://localhost:5000/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: message })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        addMessage('assistant', data);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+        }
+
+        function addMessage(sender, text) {
+            var chatMessages = document.getElementById('chat-messages');
+            var messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', sender);
+            
+            // Create a div for the message body
+            var messageBodyDiv = document.createElement('div');
+            messageBodyDiv.classList.add('message-body');
+            
+            if (sender === 'assistant') {
+                // Create a span for the user icon
+                var userIconSpan = document.createElement('span');
+                userIconSpan.classList.add('user-icon');
+                userIconSpan.innerHTML = '<i class="fas fa-user"></i>'; // Font Awesome user icon
+                
+                // Add padding between the icon and the text
+                userIconSpan.style.marginRight = '5px';
+                
+                // Append the user icon before the message body
+                messageDiv.appendChild(userIconSpan);
+            }
+            
+            messageBodyDiv.innerHTML = text;
+            
+            // Append the message body to the message div
+            messageDiv.appendChild(messageBodyDiv);
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+        }
+
+    </script>
+</body>
+
+</html>

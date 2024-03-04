@@ -19,6 +19,8 @@ openai = "^1.11.1"
 motor = "^3.3.2"
 langchainhub = "^0.1.14"
 langchain-openai = "^0.0.5"
+flask = "^3.0.2"
+flask-cors = "^4.0.0"
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.28.0"

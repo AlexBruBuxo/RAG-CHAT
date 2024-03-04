@@ -41,3 +41,17 @@ Remove Qdrant:
 ```bash
 docker rm qdrant
 ```
+
+### Frontend/Backend
+
+Run API:
+```bash
+poetry run python rag_chat/api.py
+```
+
+Run frontend:
+```bash
+cd frontend
+python -m http.server
+```
+
