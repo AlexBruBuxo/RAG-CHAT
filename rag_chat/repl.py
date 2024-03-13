@@ -33,4 +33,7 @@ chat_engine = load_chat_engine(
 
 
 if __name__ == "__main__":
-    chat_engine.chat_repl()
+    try:
+        chat_engine.chat_repl()
+    except KeyboardInterrupt:
+        print("Finished chat.")

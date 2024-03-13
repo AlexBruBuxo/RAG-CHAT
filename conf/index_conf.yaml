@@ -1,0 +1,22 @@
+
+########## SENTENCE SPLITTER ##########
+chunk_size: 512  # try this: 1024
+chunk_overlap: 128
+inlcude_prev_next_rel: True
+
+########## METADATA EXTRACTOR ##########
+# Summary Extractor
+include_summary_extractor: False
+summaries: "self"
+# Keyword Extractor
+include_keyword_extractor: False
+keywords: 10
+
+########## MONGODB: READ ##########
+max_docs: 1000
+
+########## MONGODB: WRITE ##########
+mongodb_docstore_collection_name: "docstore"
+
+########## QDRANT ##########
+qdrant_collection: vector_store

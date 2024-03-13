@@ -51,7 +51,7 @@ class ReActChatEngine():
         return ReActAgent.from_tools(
             tools=[self.query_engine_tool],
             memory=self.memory,
-            max_iterations=4, # default 10
+            max_iterations=10, # default 10
             verbose=self.verbose,
             react_chat_formatter=self.chat_formatter,
         )

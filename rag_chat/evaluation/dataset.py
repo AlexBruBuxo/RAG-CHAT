@@ -129,6 +129,37 @@ class EvalDataset():
         )
 
 
+class RetrievalEvalDataset():
+    """Retriever Evaluation dataset (question-expected node ids).
+
+    Args:
+        queries (List[str]): List of queries. 
+        expected_ids (List[str]): List of expected node ids.
+
+    """
+    def __init__(
+        self, 
+        queries: List[str] = [], 
+        expected_ids: List[str] = []
+    ) -> None:
+        self.queries = queries
+        self.expected_ids = expected_ids
+
+    @classmethod
+    def from_json(
+        cls,
+        file_path: str
+    ) -> 'EvalDataset':
+        """Load dataset from JSON file."""
+        with open(file_path, 'r') as json_file:
+            data = json.load(json_file)
+        return cls(
+            queries=data['queries'],
+            expected_ids=data['expected_ids']
+        )
+
+
+
 if __name__ == "__main__":
 
     llm = OpenAI(temperature=0, model="gpt-3.5-turbo") # Set gpt-3.5 due to rate limit being exceeded
