@@ -39,9 +39,3 @@ chat_engine = load_chat_engine(
     verbose=True
 )
 
-
-if __name__ == "__main__":
-    response = chat_engine.chat("Hi! Do you have any popcorn?") # get message
-    # chat_engine.reset() # reset memory
-    # chat_engine.stream_chat() # streaming
-    print(response)

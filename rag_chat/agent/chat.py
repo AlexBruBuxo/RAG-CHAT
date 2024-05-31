@@ -37,14 +37,14 @@ def load_chat_engine(
     
     elif chat_mode == "condense_context":
         if query_engine and retriever:
-            from rag_chat.agent.condense_context import CondensePlusContextChatEngine
-            condense_chat_engine = CondensePlusContextChatEngine(
+            from rag_chat.agent.condense_context import CondenseContextChatEngine
+            condense_context_chat_engine = CondenseContextChatEngine(
                 chat_history=chat_history,
                 query_engine=query_engine,
                 retriever=retriever,
                 verbose=verbose
             )
-            return condense_chat_engine.load_engine()
+            return condense_context_chat_engine.load_engine()
         else:
             raise Exception(f"'query_engine' and 'retriever' are a required parameter for 'condense_context' chat mode.")
     

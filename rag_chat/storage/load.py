@@ -64,33 +64,3 @@ if __name__ == "__main__":
     end_time = time.time()
     elapsed_time = end_time - start_time
     print(f"Time taken: {elapsed_time} seconds")
-
-    # Add new document -> Works good (added on both the docstore and the vector_store)
-    # reader = CustomMongoReader(uri=mongodb_uri)
-    # mongo_reader_config['max_docs'] = 5
-    # documents = reader.load_data(**mongo_reader_config)
-    # documents = [documents[4]]
-    # storage = load_storage()
-    # storage.add_docs(documents)
-
-    # Delete document (even the docs with multiple Nodes) -> Works good
-    # storage = load_storage()
-    # storage.delete_doc("d32c8b6f2ead69d851e336f5397ec527")
-
-    # Upsert document (same document; not modified) -> Works good
-    # reader = CustomMongoReader(uri=mongodb_uri)
-    # mongo_reader_config['max_docs'] = 5
-    # documents = reader.load_data(**mongo_reader_config)
-    # documents = [documents[4]]
-    # storage = load_storage()
-    # storage.add_docs(documents)
-
-    # Upsert document (modified metadata/content from document) -> Works good
-    # reader = CustomMongoReader(uri=mongodb_uri)
-    # mongo_reader_config['max_docs'] = 5
-    # documents = reader.load_data(**mongo_reader_config)
-    # documents[4].metadata["product_name"] = "Metadata has been modified!"
-    # documents[4].text = documents[4].text + "The content has been modified!"
-    # documents = [documents[4]]
-    # storage = load_storage()
-    # storage.add_docs(documents)

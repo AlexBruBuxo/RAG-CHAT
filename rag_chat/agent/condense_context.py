@@ -11,7 +11,7 @@ from rag_chat.agent.config import (
 
 
 
-class CondensePlusContextChatEngine():
+class CondenseContextChatEngine():
     def __init__(self,
             chat_history: List[ChatMessage],
             query_engine: RetrieverQueryEngine,

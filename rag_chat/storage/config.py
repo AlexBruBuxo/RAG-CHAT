@@ -24,8 +24,6 @@ Do not mention the category, URL, price nor discount information. \
 
 Summary: """
 
-
-
 # MongoDB Data Reader
 mongo_reader_config = {
     'db_name': os.getenv('MONGODB_DB_NAME'), 
@@ -33,19 +31,17 @@ mongo_reader_config = {
     'field_names': ["product_name", "brand", "category", "product_url", "description", "available", "sale_price", "list_price", "discount"], 
     'separator':  " \n\n", 
     'query_dict': {"description": { "$type": "string" }},
+    'skip_docs': index_conf['skip_docs'],
     'max_docs': index_conf["max_docs"],
-    'metadata_names': [],
+    'metadata_names': ["product_name", "brand"],
     'metadata_seperator': " \n\n",
-    'excluded_llm_metadata_keys': [], # What the LLM won't see when crafting the response
-    'excluded_embed_metadata_keys': [], # What the Emmbeding model won't see when ranking Nodes
+    'excluded_llm_metadata_keys': ["product_name", "brand"], # What the LLM won't see when crafting the response
+    'excluded_embed_metadata_keys': ["product_name", "brand"], # What the Emmbeding model won't see when ranking Nodes
     'field_doc_id': "uniq_id"
 }
 
-
 # Mongo Data Writer
 MONGODB_DOCSTORE_COLLECTION_NAME = index_conf["mongodb_docstore_collection_name"]
-
-
 
 # Sentence Splitter
 sentence_splitter_config = {
@@ -53,8 +49,6 @@ sentence_splitter_config = {
     'chunk_overlap': index_conf["chunk_overlap"],
     'include_prev_next_rel': index_conf["inlcude_prev_next_rel"]  # Default True 
 }
-
-
 
 # Metadata Extractors
 metadata_extractors_config = []
@@ -81,8 +75,6 @@ if index_conf["include_keyword_extractor"]:
 # QuestionsAnsweredExtractor(
 #     questions=3, llm=llm, metadata_mode=MetadataMode.EMBED
 # ),
-
-
 
 # Qdrant
 QDRANT_COLLECTION = index_conf["qdrant_collection"]

@@ -21,6 +21,7 @@ class CustomMongoReader(SimpleMongoReader):
         field_names: List[str] = ["text"],
         separator: str = "",
         query_dict: Optional[Dict] = None,
+        skip_docs: int = 0,
         max_docs: int = 0,
         metadata_names: Optional[List[str]] = None,
         metadata_seperator: str = "\n",
@@ -40,6 +41,8 @@ class CustomMongoReader(SimpleMongoReader):
             query_dict (Optional[Dict]): query to filter documents. Read more
             at [official docs](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#std-label-method-find-query)
                 Defaults to None
+            skip_docs (int): number of documents to skip.
+                Defaults to 0
             max_docs (int): maximum number of documents to load.
                 Defaults to 0 (no limit)
             metadata_names (Optional[List[str]]): names of the fields to be added
@@ -54,7 +57,8 @@ class CustomMongoReader(SimpleMongoReader):
 
         """
         db = self.client[db_name]
-        cursor = db[collection_name].find(filter=query_dict or {}, limit=max_docs)
+        # cursor = db[collection_name].find(filter=query_dict or {}, limit=max_docs)
+        cursor = db[collection_name].find(filter=query_dict or {}).skip(skip_docs).limit(max_docs)
 
         for item in cursor:
             try:
@@ -113,7 +117,7 @@ if __name__ == "__main__":
     from rag_chat.storage.mongo import mongodb_uri
     from rag_chat.storage.config import mongo_reader_config
 
-    mongo_reader_config['max_docs'] = 1
+    mongo_reader_config['max_docs'] = 2
 
     reader = CustomMongoReader(uri=mongodb_uri)
     documents = reader.load_data(**mongo_reader_config)

@@ -1,22 +1,23 @@
 
 ########## SENTENCE SPLITTER ##########
-chunk_size: 512  # try this: 1024
+chunk_size: 512  # 256
 chunk_overlap: 128
 inlcude_prev_next_rel: True
 
 ########## METADATA EXTRACTOR ##########
 # Summary Extractor
-include_summary_extractor: False
+include_summary_extractor: True
 summaries: "self"
 # Keyword Extractor
-include_keyword_extractor: False
+include_keyword_extractor: True
 keywords: 10
 
 ########## MONGODB: READ ##########
-max_docs: 1000
+skip_docs: 1400  # 1
+max_docs: 100  # 100
 
 ########## MONGODB: WRITE ##########
 mongodb_docstore_collection_name: "docstore"
 
 ########## QDRANT ##########
-qdrant_collection: vector_store
+qdrant_collection: vector_store_4

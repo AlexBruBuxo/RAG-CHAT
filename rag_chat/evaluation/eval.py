@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import openai
 import shutil
+import traceback
 from typing import List, Dict, Tuple, Optional
 from llama_index.llms.openai import OpenAI
 from llama_index.query_engine import RetrieverQueryEngine
@@ -17,7 +18,7 @@ from llama_index.evaluation import (
 )
 
 from rag_chat.evaluation.dataset import EvalDataset, RetrievalEvalDataset
-from rag_chat.query.query import load_async_query_engine, load_retriever
+from rag_chat.query.query import load_async_query_engine, load_retriever, load_async_retriever
 from rag_chat.agent.chat import load_chat_engine
 from rag_chat.evaluation.metrics import MRR, HitRate, Recall
 from rag_chat.evaluation.config import (
@@ -265,14 +266,17 @@ class Eval():
             start_query_time = time.time()
             try:
                 response = await chat_engine.achat(query)
+                chat_engine.reset()  # Reset conversation after each input
             except openai.RateLimitError as e:
                 retry_after = int(e.body['message'].split("Please try again in ")[1].split("s.")[0].replace('.', '')) + 100 / 1000
                 print(f"Rate limit reached. Waiting for {retry_after} seconds before retrying.") # TODO: print as warning
                 await asyncio.sleep(retry_after)
                 # Retry the query
                 response = await chat_engine.achat(query)
+                chat_engine.reset()
             except Exception as e:
-                print(f"ERROR: Unable to fetch response: {e}") # TODO: print as warning
+                print("ERROR: Unable to fetch response:") # TODO: print as warning
+                traceback.print_exc()
                 response = AgentChatResponse(response="Unable to fetch response.")
 
             end_query_time = time.time()
@@ -478,14 +482,24 @@ if __name__ == "__main__":
     llm = OpenAI(temperature=0, model="gpt-4")
     aquery_engine = load_async_query_engine()
     retriever = load_retriever()
+    aretriever = load_async_retriever()
 
-    achat_engine = load_chat_engine(
-        chat_mode=CHAT_MODE,
-        chat_history=[],  # No previous context during eval
-        retriever=retriever,
-        query_engine=aquery_engine,
-        verbose=False
-    )
+    if CHAT_MODE != "condense_context":
+        achat_engine = load_chat_engine(
+            chat_mode=CHAT_MODE,
+            chat_history=[],  # No previous context during eval
+            retriever=retriever,
+            query_engine=aquery_engine,
+            verbose=False
+        )
+    else:
+        achat_engine = load_chat_engine(
+            chat_mode=CHAT_MODE,
+            chat_history=[],  # No previous context during eval
+            retriever=aretriever,
+            query_engine=aquery_engine,
+            verbose=False
+        )
 
     eval = asyncio.run(Eval.from_chat_engine(
         achat_engine=achat_engine,

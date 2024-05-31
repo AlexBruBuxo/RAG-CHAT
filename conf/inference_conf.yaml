@@ -15,14 +15,14 @@ structured_answer_filtering: False
 ########## EVAL DATASET ##########
 max_docs: 20
 num_questions_per_node: 2
-dataset_file_path: "data/eval_dataset_xs.json"
-retrieval_dataset_file_path: "data/retrieval_eval_dataset_xs.json"
+dataset_file_path: "data/eval_dataset.json"
+retrieval_dataset_file_path: "data/retrieval_eval_dataset.json"
 generate_dataset: False
 save_dataset: True
 show_progress: True
 
 ########## EVALUATION ##########
-chat_mode: "react"  # condense, condense_context
+chat_mode: "condense_context"  # Available options: condense_context, condense, react
 save_eval_dataframe: True
 save_summary_statistics_dataframe: True
 eval_dataframe_file_path: "eval_results.csv"
@@ -30,4 +30,4 @@ retrieval_eval_dataframe_file_path: "retrieval_eval_results.csv"
 summary_statistics_dataframe_file_path: "summary_statistics.csv"
 
 ########## EXPERIMENT ##########
-experiment: "experiments/v1/"
+experiment: "experiments/v1500/"

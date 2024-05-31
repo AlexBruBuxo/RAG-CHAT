@@ -10,12 +10,8 @@ from rag_chat.utils import read_inference_conf
 
 inference_conf = read_inference_conf()
 
-
-
 # Vector Index Retriver
 similarity_top_k = inference_conf["similarity_top_k"]
-
-
 
 # Node Postprocessors
 node_postprocessors = []
@@ -33,18 +29,15 @@ if inference_conf["include_similarity_postprocessor"]:
 # For example, if the top Nodes have PREVIOUS/NEXT with the same ID, then 
 # fetch them also: https://docs.llamaindex.ai/en/latest/module_guides/querying/node_postprocessors/node_postprocessors.html# 
 
-
-
 # Pydantic response model
 class Response(BaseModel):
     """Data model for a response."""
     product_urls: List[str]
     answer: str
 
-
 # Response synthesizer
 response_sinthesizer = {
-    'response_mode': ResponseMode.COMPACT,
+    'response_mode': ResponseMode.COMPACT, # ResponseMode.REFINE, 
     'verbose': inference_conf["verbose"],
     # NOTE: We can consider a custom synthesizer:
     # https://docs.llamaindex.ai/en/stable/module_guides/querying/response_synthesizers/root.html#custom-response-synthesizers

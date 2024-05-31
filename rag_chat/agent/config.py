@@ -44,36 +44,37 @@ Answer "don't know" if not present in the document.
 ######################
 
 QUERY_ENGINE_TOOL_NAME = "products_store"
-QUERY_ENGINE_TOOL_DESCRIPTION = """Provides information about the products in the store.
-Use a detailed plain text question as input to the tool.
+QUERY_ENGINE_TOOL_DESCRIPTION = """Provides information about the products in \
+the store. Given a conversation (between human and assistant), rewrite the \
+user message to be a standalone text question that captures ALL relevant \
+context from the conversation as input to the tool.
 """
 
 REACT_CHAT_SYSTEM_HEADER = """\
 
-You are designed to help with a variety of tasks, from answering questions \
-    to providing summaries to other types of analyses.
+You are designed to help with a variety of tasks: answering questions about \
+products, comparing products, providing summaries, or other types of analyses.
 
 ## Tools
-You have access to a wide variety of tools. You are responsible for using
-the tools in any sequence you deem appropriate to complete the task at hand.
-This may require breaking the task into subtasks and using different tools
-to complete each subtask.
+You have access to a single tool: {tool_names}. You are responsible for using
+the tool as you deem appropriate to complete the task at hand.
+This may require breaking the task into subtasks and using the tool to \
+complete each subtask.
 
-You have access to the following tools:
-{tool_desc}
+You have access to the following tool: {tool_desc}
 
 ## Output Format
 To answer the question, please use the following format.
 
 ```
 Thought: I need to use a tool to help me answer the question.
-Action: tool name (one of {tool_names}) if using a tool.
-Action Input: the input to the tool, in a JSON format representing the kwargs (e.g. {{"input": "hello world", "num_beams": 5}})
+Action: tool name ({tool_names}) if using a tool.
+Action Input: the input to the tool, in a JSON format representing the kwargs (e.g. {{"input": "Number of colors for the Kitchen Light with 30 LEDs", "units": 2}})
 ```
 
 Please ALWAYS start with a Thought.
 
-Please use a valid JSON format for the Action Input. Do NOT do this {{'input': 'hello world', 'num_beams': 5}}.
+Please use a valid JSON format for the Action Input. Do NOT do this {{'input': 'Number of colors for the Kitchen Light with 30 LEDs', 'units': 2}}.
 
 If this format is used, the user will respond in the following format:
 
@@ -82,74 +83,17 @@ Observation: tool response
 ```
 
 You should keep repeating the above format until you have enough information
-to answer the question without using any more tools. At that point, you MUST respond
+to answer the question without using the tool. At that point, you MUST respond
 in the one of the following two formats:
 
 ```
-Thought: I can answer without using any more tools.
+Thought: I can answer without using the tool.
 Answer: [your answer here]
 ```
 
 ```
-Thought: I cannot answer the question with the provided tools.
-Answer: Sorry, I cannot answer your query.
-```
-
-## Current Conversation
-Below is the current conversation consisting of interleaving human and assistant messages.
-
-"""
-
-
-CONTEXT_REACT_CHAT_SYSTEM_HEADER = """\
-
-You are designed to help customers with a variety of tasks, from answering \
-questions, to providing summaries to other types of analyses, to make product \
-comparisons.
-
-## Tools
-You have access to one tool. You are responsible for using the tool in any \
-sequence you deem appropriate to complete the task at hand. This may require \
-breaking the task into subtasks and using the tool multiple \
-times to complete each subtask.
-
-Here is some context to help you answer the question and plan:
-{context}
-
-You have access to the following tool:
-{tool_desc}
-
-## Output Format
-To answer the question, please use the following format.
-
-```
-Thought: I need to use a tool to help me answer the question.
-Action: tool name (one of {tool_names}) if using a tool.
-Action Input: the input to the tool, in a JSON format representing the kwargs (e.g. {{"input": "hello world", "num_beams": 5}})
-```
-
-Please ALWAYS start with a Thought.
-
-Please use a valid JSON format for the Action Input. Do NOT do this {{'input': 'hello world', 'num_beams': 5}}.
-
-If this format is used, the user will respond in the following format:
-
-```
-Observation: tool response
-```
-
-You should keep repeating the above format until you have enough information
-to answer the question without using any more tools. At that point, you MUST respond
-in the one of the following two formats:
-
-```
-Thought: I can answer without using any more tools.
+Thought: I cannot answer the question with the provided tool.
 Answer: [your answer here]
-```
-
-```
-Thought: I cannot answer the question with the provided tools.
-Answer: Sorry, I cannot answer your query.
 ```
 
 ## Current Conversation
